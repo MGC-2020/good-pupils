@@ -1,4 +1,5 @@
 # good-pupils
 
 ### Things to do:
-- [ ] idk
+- [ ] display time
+- [ ] 
