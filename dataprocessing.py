@@ -1,7 +1,11 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
+import pandas as pd
 import datetime
+import os 
+
+DIR_PATH = os.path.dirname(os.path.realpath(__file__))
 
 MIN_HEALTHY_LIGHT_LEVEL = 1000
 INTERVAL_LENGTH = 5 # minutes
@@ -10,6 +14,11 @@ near = [0,1,1,0,0,0,0,0,1,1,1,1,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,
 light = [40,45,46,65,813,914,1340,1789,219,727,3308,9290,45410,53683,18751,85,40,41,38,2565,2690,2637,2659,1976,2995,2089,1667,1457,2105,5866,4912,1771,3304,1298,3872,1914,2937,1772,4769,11385,25809,26501,2075,620,4055,610,3681,782,438,124,5126,1582,2260,2098,10166,3119,4861,2095,2830,1051,1085,1523,17550,11541,18186,10216,6802,11680,5013,6876,54,0]
 
 plt.style.use('dark_background')
+
+
+def process_csv(file_name):
+	df = pd.read_csv(file_name)
+	return (df['Light Intensity'].tolist(), df['Near?'].tolist())
 
 
 def plot_light_graph(light_history):
@@ -27,7 +36,7 @@ def plot_light_graph(light_history):
 	light_ax.xaxis.set_major_formatter(mdates.DateFormatter(r'%I %p'))
 
 	graph_name = 'plots/light-graph.png'
-	graph_path = f'static/{graph_name}'
+	graph_path = f'{DIR_PATH}/static/{graph_name}'
 	fig.savefig(graph_path)
 	
 	plt.close(fig)
@@ -52,7 +61,7 @@ def plot_near_frequency_pie(near_history):
 		startangle=180,
 	)
 	graph_name = 'plots/near-pie.png'
-	graph_path = f'static/{graph_name}'
+	graph_path = f'{DIR_PATH}/static/{graph_name}'
 	fig.savefig(graph_path)
 
 	plt.close(fig)
@@ -88,7 +97,7 @@ def plot_near_graph(near_history):
 	near_ax.legend()
 	
 	graph_name = 'plots/near-graph.png'
-	graph_path = f'static/{graph_name}'
+	graph_path = f'{DIR_PATH}/static/{graph_name}'
 	
 	fig.savefig(graph_path)
 	return graph_name

@@ -39,6 +39,10 @@ GPlot nearPlot, lightPlot;
 
 color baseColor, highlight, textColor;
 
+
+//runonce for webui
+boolean webuiLaunched = false;
+
 void setup()
 {  
   size(1500, 700);
@@ -438,9 +442,14 @@ void keyPressed(){
   if (key == '\b') //page backwards if backspace
     section--;
   
-  //println("Final status: " + status);
-  //filename = "MGC_" + str(d) + "-" + str(m) + "-" + str(y)+ "_" + str(h) + "-" + str(n) + "-" + str(s) + ".csv"; //saves table in excel format
-  //saveTable(table, filename);
-  //println(filename + " saved!");
-  //exit();
+  if (!webuiLaunched) {
+    fillTable();
+    println("Final status: " + status);
+    filename = "MGC_" + str(d) + "-" + str(m) + "-" + str(y)+ "_" + str(h) + "-" + str(n) + "-" + str(s) + ".csv"; //saves table in excel format
+    saveTable(table, filename);
+    println(filename + " saved!");
+    
+    launch("cd " + sketchPath("") + " && python run.py");
+    link("http://localhost:5000/?csv_file_name="+filename);
+  }
 }

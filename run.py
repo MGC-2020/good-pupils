@@ -9,11 +9,14 @@ categories = None
 
 @app.route("/")
 def home():
-    light_graph_name = dataprocessing.plot_light_graph(dataprocessing.light)
-    outdoor_time = dataprocessing.get_outdoor_time(dataprocessing.light)
-    near_frequency_pie_name = dataprocessing.plot_near_frequency_pie(dataprocessing.near)
-    near_frequency = dataprocessing.get_near_frequency(dataprocessing.near)
-    near_graph_name = dataprocessing.plot_near_graph(dataprocessing.near)
+    csv_file_name = request.args.get('csv_file_name')
+    light_history, near_history = dataprocessing.process_csv(csv_file_name)
+    
+    light_graph_name = dataprocessing.plot_light_graph(light_history)
+    outdoor_time = dataprocessing.get_outdoor_time(light_history)
+    near_frequency_pie_name = dataprocessing.plot_near_frequency_pie(near_history)
+    near_frequency = dataprocessing.get_near_frequency(near_history)
+    near_graph_name = dataprocessing.plot_near_graph(near_history)
     return render_template(
         'index.html', 
         light_graph_name=light_graph_name,
