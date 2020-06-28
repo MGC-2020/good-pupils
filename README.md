@@ -5,13 +5,12 @@
 - [ ] find healthy ranges of light intensity on the eyes
 - [ ] research whether UV light is good for the eyes, if so find healthy range
 
-### Running python graph generator
+### Running webui
 
 ```
 pip install -r requirements.txt
-python .\graph.py
+python .\run.py
 ```
+Then open your browser and go to [http://localhost:5000/](http://localhost:5000/)
 
-The graph should show up in a png file called test.png
-
-Further work needed to integrate into ui / scrap
+Further work needed to integrate with processing code

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Progress Today</title>
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <div class="text-center">
+        <h1 class="my-4">Progress Today</h1>
+        <div class="row">
+
+            <div class="col-lg-6">
+                <div class="card my-2">
+                    <div class="card-body">
+                        <h1 class="card-title">{{ near_frequency }}</h5>
+                        <p class="card-text">times you looked at something unhealthily closely</p>
+                    </div>
+                </div>
+
+
+                <div class="card my-2">
+                    <img alt="How frequently you looked at things from a healthy distance"
+                         class="card-img-top" src="{{ url_for('static', filename=near_frequency_pie_name) }}">
+                    <div class="card-body">
+                        How frequently you looked at things from a healthy distance
+                    </div>
+                </div>
+
+                <div class="card my-2">
+                    <img alt="Amount of light received over the day"
+                         class="card-img-top" src="{{ url_for('static', filename=near_graph_name) }}">
+                    <div class="card-body">
+                        Times you looked at things too closely
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="card my-2">
+                    <div class="card-body">
+                        <h1 class="card-title">{{ outdoor_time }}</h5>
+                        <p class="card-text">minutes of total outdoor time today</p>
+                    </div>
+                </div>
+                <div class="card my-2">
+                    <img alt="Amount of light received over the day"
+                         class="card-img-top" src="{{ url_for('static', filename=light_graph_name) }}">
+                    <div class="card-body">
+                        Amount of light received over the day
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
